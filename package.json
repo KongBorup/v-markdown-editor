@@ -6,7 +6,7 @@
   "main": "./dist/v-markdown-editor.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --progress --watch --colors",
-    "prod": "cross-env NODE_ENV=production webpack -p --watch --progress --colors",
+    "prod": "cross-env NODE_ENV=production webpack -p --progress --colors",
     "start": "node ./dist/app.js"
   },
   "repository": {
