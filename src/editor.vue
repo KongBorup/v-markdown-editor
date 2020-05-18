@@ -190,6 +190,10 @@
                     }
                 }
             },
+            shouldBreakOnNewline: {
+                type: Boolean,
+                default: true,
+            },
         },
 
         data() {
@@ -498,7 +502,9 @@
 
                     case 'preview':
 
-                        this.html = Marked(ed.getValue(), { breaks: true });
+                        this.html = Marked(ed.getValue(), {
+                            breaks: this.shouldBreakOnNewline,
+                        });
                         this.preview = !this.preview;
 
                         break;
