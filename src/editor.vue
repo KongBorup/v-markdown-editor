@@ -194,6 +194,10 @@
                 type: Boolean,
                 default: true,
             },
+            titles: {
+                type: Object,
+                default: () => ({}),
+            },
         },
 
         data() {
@@ -529,6 +533,10 @@
                 if (this.__rendered) return;
 
                 var buttons = Object.assign({}, this.buttons, this.extend);
+
+                Object.keys(this.titles).forEach((key) => {
+                    buttons[key].title = this.titles[key];
+                });
 
                 var shortcuts = {};
 
