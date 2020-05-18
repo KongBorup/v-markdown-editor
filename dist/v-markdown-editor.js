@@ -283,6 +283,16 @@ __webpack_require__.r(__webpack_exports__);
           lineWrapping: true
         };
       }
+    },
+    shouldBreakOnNewline: {
+      type: Boolean,
+      "default": true
+    },
+    titles: {
+      type: Object,
+      "default": function _default() {
+        return {};
+      }
     }
   },
   data: function data() {
@@ -596,7 +606,7 @@ __webpack_require__.r(__webpack_exports__);
 
         case 'preview':
           this.html = marked__WEBPACK_IMPORTED_MODULE_1___default()(ed.getValue(), {
-            breaks: true
+            breaks: this.shouldBreakOnNewline
           });
           this.preview = !this.preview;
           break;
@@ -618,6 +628,9 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.__rendered) return;
       var buttons = Object.assign({}, this.buttons, this.extend);
+      Object.keys(this.titles).forEach(function (key) {
+        buttons[key].title = _this.titles[key];
+      });
       var shortcuts = {};
       this.toolbar.split('|').forEach(function (t, i) {
         var group = [];

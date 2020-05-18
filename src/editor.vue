@@ -190,6 +190,14 @@
                     }
                 }
             },
+            shouldBreakOnNewline: {
+                type: Boolean,
+                default: true,
+            },
+            titles: {
+                type: Object,
+                default: () => ({}),
+            },
         },
 
         data() {
@@ -498,7 +506,9 @@
 
                     case 'preview':
 
-                        this.html = Marked(ed.getValue(), { breaks: true });
+                        this.html = Marked(ed.getValue(), {
+                            breaks: this.shouldBreakOnNewline,
+                        });
                         this.preview = !this.preview;
 
                         break;
@@ -523,6 +533,10 @@
                 if (this.__rendered) return;
 
                 var buttons = Object.assign({}, this.buttons, this.extend);
+
+                Object.keys(this.titles).forEach((key) => {
+                    buttons[key].title = this.titles[key];
+                });
 
                 var shortcuts = {};
 
